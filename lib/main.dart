@@ -3,10 +3,16 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_slider_webview/home_screen.dart';
-import 'package:image_slider_webview/navbarScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:image_slider_webview/splashScreen.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -23,7 +29,7 @@ class MyApp extends StatelessWidget {
           return GetMaterialApp(
             builder: EasyLoading.init(),
             debugShowCheckedModeBanner: false,
-            home: HomePage(),
+            home: SplashScreen(),
           );
         });
   }

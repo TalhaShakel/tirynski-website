@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
 
   EggType? eggType;
   /////////////////// asign timer value
-  Map<EggType, double> cookPeriod = {EggType.soft: 0.10};
+  Map<EggType, double> cookPeriod = {EggType.soft:1 };
   double remainingTime = 0;
   bool counting = false;
 
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
 
   timetochange() {
     // _startTimer();
-    timer1 = Timer.periodic(Duration(seconds: 10), (timer1) {
+    timer1 = Timer.periodic(Duration(minutes: 1), (timer1) {
       print("currentPage ${currentPage}");
       print("timer1 ${timer1.isActive}");
       if (currentPage < images.length - 1) {
