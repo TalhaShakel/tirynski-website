@@ -27,11 +27,13 @@ class _HomePageState extends State<HomePage> {
 
   EggType? eggType;
   /////////////////// asign timer value
-  Map<EggType, double> cookPeriod = {EggType.soft:1 };
+  Map<EggType, double> cookPeriod = {EggType.soft: 1};
   double remainingTime = 0;
   bool counting = false;
 
   bool info = false;
+
+  bool isPageshow = false;
 
   @override
   void initState() {
@@ -74,63 +76,80 @@ class _HomePageState extends State<HomePage> {
       width: Get.width,
       child: GestureDetector(
         onTap: () {
-          Get.to(NavBarScreen(
-            data: images[currentPage],
-          ));
+          setState(() {});
+          isPageshow = true;
+          // Get.to(NavBarScreen(
+          //   data: images[currentPage],
+          // ));
         },
         child: Stack(
           children: [
-            PageView(
-              controller: _pageController,
-              children: carouselItems,
-              onPageChanged: (int page) {
-                // print(page);
-                // print(carouselItems[0]);
-                setState(() {
-                  _startTimer();
-                  currentPage = page;
-                  images[page];
-                });
-              },
-            ),
+            // isPageshow == true
+            //     ? Container(
+            //         height: Get.height * 0.8,
+            //         child: NavBarScreen(data: images[currentPage]),
+            //       )
+            //     : Container(),
             Positioned(
-              right: 300,
-              // left: 0,
-              top: 200,
-              child: Center(
-                child: Container(
-                  height: Get.height * 0.3,
-                  width: Get.height * 0.3,
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    "${images[currentPage]["text"]}",
-                    style: TextStyle(color: Colors.amber),
-                  ),
-                ),
+              top: 0,
+              child: Container(
+                height: Get.height * 0.8,
+                color: Colors.blue,
+                // child: NavBarScreen(data: images[currentPage]),
               ),
             ),
-            /////////////////////
-            Positioned(
-              bottom: 10.h,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(height: 100.h, child: Image.asset("assets/NS.png")),
-                  // Container(height: 80.h, child: _renderEggImage()),
-                ],
-              ),
-            ),
-            ///////////////////
-            Positioned(
-              bottom: 15.h,
-              left: 102.w,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(height: 90.h, child: _renderEggImage()),
-                ],
-              ),
-            )
+
+            // PageView(
+            //   controller: _pageController,
+            //   children: carouselItems,
+            //   onPageChanged: (int page) {
+            //     // print(page);
+            //     // print(carouselItems[0]);
+            //     setState(() {
+            //       _startTimer();
+            //       currentPage = page;
+            //       images[page];
+            //     });
+            //   },
+            // ),
+            // Positioned(
+            //   right: 300,
+            //   // left: 0,
+            //   top: 200,
+            //   child: Center(
+            //     child: Container(
+            //       height: Get.height * 0.3,
+            //       width: Get.height * 0.3,
+            //       padding: EdgeInsets.all(10),
+            //       child: Text(
+            //         "${images[currentPage]["text"]}",
+            //         style: TextStyle(color: Colors.amber),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            // /////////////////////
+            // Positioned(
+            //   bottom: 10.h,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //     children: [
+            //       Container(height: 100.h, child: Image.asset("assets/NS.png")),
+            //       // Container(height: 80.h, child: _renderEggImage()),
+            //     ],
+            //   ),
+            // ),
+            // ///////////////////
+            // Positioned(
+            //   bottom: 15.h,
+            //   left: 102.w,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //     children: [
+            //       Container(height: 90.h, child: _renderEggImage()),
+            //     ],
+            //   ),
+            // )
           ],
         ),
       ),
