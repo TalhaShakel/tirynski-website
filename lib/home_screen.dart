@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
 
   EggType? eggType;
   /////////////////// asign timer value
-  Map<EggType, double> cookPeriod = {EggType.soft: 1};
+  Map<EggType, double> cookPeriod = {EggType.soft: 0.10};
   double remainingTime = 0;
   bool counting = false;
 
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
 
   timetochange() {
     // _startTimer();
-    timer1 = Timer.periodic(Duration(minutes: 1), (timer1) {
+    timer1 = Timer.periodic(Duration(seconds: 10), (timer1) {
       print("currentPage ${currentPage}");
       print("timer1 ${timer1.isActive}");
       if (currentPage < images.length - 1) {
@@ -99,57 +99,57 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
-            // PageView(
-            //   controller: _pageController,
-            //   children: carouselItems,
-            //   onPageChanged: (int page) {
-            //     // print(page);
-            //     // print(carouselItems[0]);
-            //     setState(() {
-            //       _startTimer();
-            //       currentPage = page;
-            //       images[page];
-            //     });
-            //   },
-            // ),
-            // Positioned(
-            //   right: 300,
-            //   // left: 0,
-            //   top: 200,
-            //   child: Center(
-            //     child: Container(
-            //       height: Get.height * 0.3,
-            //       width: Get.height * 0.3,
-            //       padding: EdgeInsets.all(10),
-            //       child: Text(
-            //         "${images[currentPage]["text"]}",
-            //         style: TextStyle(color: Colors.amber),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            // /////////////////////
-            // Positioned(
-            //   bottom: 10.h,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //     children: [
-            //       Container(height: 100.h, child: Image.asset("assets/NS.png")),
-            //       // Container(height: 80.h, child: _renderEggImage()),
-            //     ],
-            //   ),
-            // ),
-            // ///////////////////
-            // Positioned(
-            //   bottom: 15.h,
-            //   left: 102.w,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //     children: [
-            //       Container(height: 90.h, child: _renderEggImage()),
-            //     ],
-            //   ),
-            // )
+            PageView(
+              controller: _pageController,
+              children: carouselItems,
+              onPageChanged: (int page) {
+                // print(page);
+                // print(carouselItems[0]);
+                setState(() {
+                  _startTimer();
+                  currentPage = page;
+                  images[page];
+                });
+              },
+            ),
+            Positioned(
+              right: 300,
+              // left: 0,
+              top: 200,
+              child: Center(
+                child: Container(
+                  height: Get.height * 0.3,
+                  width: Get.height * 0.3,
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    "${images[currentPage]["description"]}",
+                    style: TextStyle(color: Colors.amber),
+                  ),
+                ),
+              ),
+            ),
+            /////////////////////
+            Positioned(
+              bottom: 10.h,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(height: 100.h, child: Image.asset("assets/NS.png")),
+                  // Container(height: 80.h, child: _renderEggImage()),
+                ],
+              ),
+            ),
+            ///////////////////
+            Positioned(
+              bottom: 15.h,
+              left: 102.w,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(height: 90.h, child: _renderEggImage()),
+                ],
+              ),
+            )
           ],
         ),
       ),

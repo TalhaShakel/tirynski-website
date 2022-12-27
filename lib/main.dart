@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:image_slider_webview/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:image_slider_webview/splashScreen.dart';
+import 'package:image_slider_webview/test.dart';
 
 import 'firebase_options.dart';
 
