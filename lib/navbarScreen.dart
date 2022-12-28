@@ -16,7 +16,7 @@ class NavBarScreen extends StatelessWidget {
     print(data);
     return Container(
       // margin: EdgeInsets.symmetric(horizontal: 400.w),
-
+      color: Color.fromARGB(255, 0, 50, 77),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: Get.width * 0.08),
         child: Scaffold(
@@ -27,7 +27,9 @@ class NavBarScreen extends StatelessWidget {
                   Icons.home,
                   size: 40,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Get.back();
+                },
               ),
               title: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -175,7 +177,7 @@ class NavBarScreen extends StatelessWidget {
                             child: ClipOval(
                               child: SizedBox.fromSize(
                                 size: Size.fromRadius(48), // Image radius
-                                child: Image.network("${data["images"]}",
+                                child: Image.network("${data["imageL"]}",
                                     fit: BoxFit.cover),
                               ),
                             ),
@@ -220,7 +222,7 @@ class NavBarScreen extends StatelessWidget {
                           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
-                              "${data["text2"]} ",
+                              "${data["description"]} ",
                               softWrap: true,
                               style: TextStyle(
                                   fontSize: 14.sp, color: Colors.black),

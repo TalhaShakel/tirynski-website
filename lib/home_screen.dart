@@ -20,6 +20,17 @@ class HomePage extends StatefulWidget {
 enum EggType { soft, hard }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    //slider time
+    _startTimer();
+    timetochange();
+
+    eggType = EggType.soft;
+    _startTimer();
+  }
+
   final PageController _pageController = PageController(initialPage: 0);
   int currentPage = 0;
   late Timer timer;
@@ -34,17 +45,6 @@ class _HomePageState extends State<HomePage> {
   bool info = false;
 
   bool isPageshow = false;
-
-  @override
-  void initState() {
-    super.initState();
-    //slider time
-    _startTimer();
-    timetochange();
-
-    eggType = EggType.soft;
-    _startTimer();
-  }
 
   timetochange() {
     // _startTimer();
@@ -70,6 +70,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // _startTimer();
+
     return Scaffold(
         body: Container(
       height: Get.height,
@@ -78,9 +80,9 @@ class _HomePageState extends State<HomePage> {
         onTap: () {
           setState(() {});
           isPageshow = true;
-          // Get.to(NavBarScreen(
-          //   data: images[currentPage],
-          // ));
+          Get.to(NavBarScreen(
+            data: images[currentPage],
+          ));
         },
         child: Stack(
           children: [
@@ -128,28 +130,45 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            /////////////////////
             Positioned(
               bottom: 10.h,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(height: 100.h, child: Image.asset("assets/NS.png")),
-                  // Container(height: 80.h, child: _renderEggImage()),
-                ],
+              child: SizedBox(
+                height: 50.h,
+                // width: 100.w,
+                child: Row(
+                  // direction: Axis.horizontal,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Image.asset("assets/NS.png"),
+                    // Container(height: 80.h, child: _renderEggImage()),
+                    // Text("Tirynski.com"),
+                    _renderEggImage(),
+                  ],
+                ),
               ),
             ),
-            ///////////////////
-            Positioned(
-              bottom: 15.h,
-              left: 102.w,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(height: 90.h, child: _renderEggImage()),
-                ],
-              ),
-            )
+            /////////////////////
+            // Positioned(
+            //   bottom: 10.h,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //     children: [
+            //       Container(height: 100.h, child: Image.asset("assets/NS.png")),
+            //       // Container(height: 80.h, child: _renderEggImage()),
+            //     ],
+            //   ),
+            // ),
+            // ///////////////////
+            // Positioned(
+            //   bottom: 15.h,
+            //   left: 102.w,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //     children: [
+            //       Container(height: 90.h, child: _renderEggImage()),
+            //     ],
+            //   ),
+            // )
           ],
         ),
       ),
@@ -189,7 +208,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   _startTimer() {
-    if (counting) {
+    if (counting == true) {
       _cancelTimer();
       _resetRemainingTime();
     } else {
@@ -211,7 +230,7 @@ class _HomePageState extends State<HomePage> {
       // size: Size.fromHeight(2),
       foregroundPainter: EggOverlay(bgColor: Colors.black, percent: percent),
       child: CircleAvatar(
-        radius: 100.0.r,
+        radius: 30.r,
         backgroundColor: Colors.grey,
         child: Image.asset(imgPath),
       ),
