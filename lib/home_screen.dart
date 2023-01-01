@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -29,8 +30,6 @@ class _HomePageState extends State<HomePage> {
     _resetRemainingTime();
     timetochange();
     _startTimer();
-
-    
   }
 
   final PageController _pageController = PageController(initialPage: 0);
@@ -60,7 +59,9 @@ class _HomePageState extends State<HomePage> {
         _startTimer();
       } else {
         _startTimer();
-        currentPage = 0;
+        var random = Random();
+        int randomInt = random.nextInt(images.length - 1);
+        currentPage = randomInt;
         print("currentPage ${currentPage}");
         _startTimer();
       }
