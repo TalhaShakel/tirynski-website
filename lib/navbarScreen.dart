@@ -40,7 +40,8 @@ class NavBarScreen extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            "EN: Change Language",
+                            // "EN: Change Language",
+                            "NL: verander taal",
                             style: TextStyle(fontSize: 18, color: Colors.white),
                           ),
                           Icon(Icons.arrow_drop_down)
@@ -51,7 +52,8 @@ class NavBarScreen extends StatelessWidget {
                       width: 50,
                     ),
                     Text(
-                      "About the Talk",
+                      // "About the Talk",
+                      "over het gesprek",
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                     SizedBox(
@@ -120,7 +122,10 @@ class NavBarScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Download de Tyrinski app in de google play store. Download de Tyrinski app in de google play store",
+                      "${data["title"]} ",
+
+                      // "Download de Tyrinski app in de google play store. Download de Tyrinski app in de google play store",
+
                       style: TextStyle(fontSize: 18.sp, color: Colors.black),
                     ),
                   ],

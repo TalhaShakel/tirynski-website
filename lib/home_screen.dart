@@ -25,12 +25,12 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    //slider time
-    _startTimer();
-    timetochange();
-
     eggType = EggType.soft;
+    _resetRemainingTime();
+    timetochange();
     _startTimer();
+
+    
   }
 
   final PageController _pageController = PageController(initialPage: 0);
@@ -49,7 +49,6 @@ class _HomePageState extends State<HomePage> {
   bool isPageshow = false;
 
   timetochange() {
-    // _startTimer();
     timer1 = Timer.periodic(Duration(minutes: 10), (timer1) {
       print("currentPage ${currentPage}");
       print("timer1 ${timer1.isActive}");
@@ -76,32 +75,28 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
         body: Container(
-      height: Get.height,
-      width: Get.width,
+      // height: Get.height,
+      // width: Get.width,
       child: GestureDetector(
         onTap: () {
-          setState(() {});
-          isPageshow = true;
-          Get.to(NavBarScreen(
-            data: images[currentPage],
-          ));
+          setState(() {
+            isPageshow = !isPageshow;
+          });
+
+          // Get.to(NavBarScreen(
+          //   data: images[currentPage],
+          // ));
         },
         child: Stack(
           children: [
-            // isPageshow == true
-            //     ? Container(
-            //         height: Get.height * 0.8,
-            //         child: NavBarScreen(data: images[currentPage]),
-            //       )
-            //     : Container(),
-            Positioned(
-              top: 0,
-              child: Container(
-                height: Get.height * 0.8,
-                color: Colors.blue,
-                // child: NavBarScreen(data: images[currentPage]),
-              ),
-            ),
+            // Positioned(
+            //   top: 0,
+            //   child: Container(
+            //     height: Get.height * 0.8,
+            //     color: Colors.blue,
+            //     // child: NavBarScreen(data: images[currentPage]),
+            //   ),
+            // ),
 
             PageView(
               controller: _pageController,
@@ -116,22 +111,20 @@ class _HomePageState extends State<HomePage> {
                 });
               },
             ),
-            Positioned(
-              right: 300,
-              // left: 0,
-              top: 200,
-              child: Center(
-                child: Container(
-                  height: Get.height * 0.3,
-                  width: Get.height * 0.3,
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    "${images[currentPage]["description"]}",
-                    style: TextStyle(color: Colors.amber),
-                  ),
-                ),
-              ),
-            ),
+            isPageshow == true
+                ? Positioned(
+                    // right: 30S0,
+                    // left: 0,
+                    bottom: Get.height * 0.1,
+                    child: Center(
+                      child: Container(
+                        height: Get.height * 0.9,
+                        width: Get.width,
+                        child: NavBarScreen(data: images[currentPage]),
+                      ),
+                    ),
+                  )
+                : Container(),
             Positioned(
               bottom: 10.h,
               child: SizedBox(

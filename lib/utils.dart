@@ -27,30 +27,30 @@ infoimage(txt, onPressed) {
     ),
   );
 }
+
 firestore_get() async {
-  CollectionReference  userData =
+  CollectionReference userData =
       await FirebaseFirestore.instance.collection("admin");
   Stream<QuerySnapshot> _ = userData.snapshots();
   // print(userData);
   userData.doc();
-  userData .get() .then((value)  {
+  userData.get().then((value) {
     print(value.docs);
     value.docs.forEach((_) {
-     images.add(_.data());
+      images.add(_.data());
       //  print(_.data());
-      }
-    );
+    });
   });
   print(images2);
- 
 }
-List images2 =[];
+
+List images2 = [];
 
 List<Widget> carouselItems = images
-    .map((cimages) => Container(
-      child: Image.network(
-        cimages["imageL"].toString().trim(),
-        fit: BoxFit.cover,
-      ),
-    ))
+    .map((_) => Container(
+          child: Image.network(
+            "${_['imageL']}",
+            fit: BoxFit.cover,
+          ),
+        ))
     .toList();
